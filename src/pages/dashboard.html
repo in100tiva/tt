@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - School Gaming Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/custom.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+<body>
+    <div id="app" class="min-h-screen flex flex-col">
+        <nav class="navbar bg-base-100 shadow-lg">
+            <div class="flex-1">
+                <a href="../../index.html" class="btn btn-ghost normal-case text-xl">School Gaming Platform</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="dashboard.html" class="active">Dashboard</a></li>
+                    <li><a href="guilds.html">Guilds</a></li>
+                    <li><a href="challenges.html">Challenges</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="rewards.html">Rewards</a></li>
+                </ul>
+                <button id="themeToggle" class="btn btn-ghost btn-circle">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <button id="logoutBtn" class="btn btn-ghost">Logout</button>
+            </div>
+        </nav>
+
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold mb-8">Dashboard</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                <div class="stat bg-base-100 shadow">
+                    <div class="stat-figure text-primary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"></path></svg>
+                    </div>
+                    <div class="stat-title">Total XP</div>
+                    <div class="stat-value text-primary" id="totalXP">0</div>
+                    <div class="stat-desc">21% more than last month</div>
+                </div>
+                
+                <div class="stat bg-base-100 shadow">
+                    <div class="stat-figure text-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                    </div>
+                    <div class="stat-title">Current Level</div>
+                    <div class="stat-value text-secondary" id="currentLevel">0</div>
+                    <div class="stat-desc">2 levels up since last week</div>
+                </div>
+                
+                <div class="stat bg-base-100 shadow">
+                    <div class="stat-figure text-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6V4m0 2a2 2 0 100 4m0-4a2 2 0 110 4m-6 8a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4m6 6v10m6-2a2 2 0 100-4m0 4a2 2 0 110-4m0 4v2m0-6V4"></path></svg>
+                    </div>
+                    <div class="stat-title">Active Guilds</div>
+                    <div class="stat-value" id="activeGuilds">0</div>
+                    <div class="stat-desc">↗︎ 2 (22%)</div>
+                </div>
+                
+                <div class="stat bg-base-100 shadow">
+                    <div class="stat-figure text-secondary">
+                        <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="inline-block w-8 h-8 stroke-current"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4"></path></svg>
+                    </div>
+                    <div class="stat-title">Completed Challenges</div>
+                    <div class="stat-value" id="completedChallenges">0</div>
+                    <div class="stat-desc">↗︎ 7 (14%)</div>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-base-100 p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-semibold mb-4">Active Guilds</h2>
+                    <ul id="activeGuildsList" class="space-y-2">
+                        <!-- Active guilds will be populated here -->
+                    </ul>
+                </div>
+
+                <div class="bg-base-100 p-6 rounded-lg shadow">
+                    <h2 class="text-2xl font-semibold mb-4">Recent Activities</h2>
+                    <ul id="recentActivitiesList" class="space-y-2">
+                        <!-- Recent activities will be populated here -->
+                    </ul>
+                </div>
+            </div>
+
+            <div class="mt-8 bg-base-100 p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Upcoming Events</h2>
+                <ul id="upcomingEventsList" class="space-y-2">
+                    <!-- Upcoming events will be populated here -->
+                </ul>
+            </div>
+
+            <div class="mt-8 bg-base-100 p-6 rounded-lg shadow">
+                <h2 class="text-2xl font-semibold mb-4">Recent Achievements</h2>
+                <div id="recentAchievements" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                    <!-- Recent achievements will be populated here -->
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+            <div>
+                <p>Copyright © 2023 - All rights reserved by School Gaming Platform</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="notificationContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/darkMode.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/dashboard.js"></script>
+</body>
+</html>
+

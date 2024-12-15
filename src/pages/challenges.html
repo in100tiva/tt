@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Challenges - School Gaming Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/custom.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+<body>
+    <div id="app" class="min-h-screen flex flex-col">
+        <nav class="navbar bg-base-100 shadow-lg">
+            <div class="flex-1">
+                <a href="../../index.html" class="btn btn-ghost normal-case text-xl">School Gaming Platform</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="guilds.html">Guilds</a></li>
+                    <li><a href="challenges.html" class="active">Challenges</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="rewards.html">Rewards</a></li>
+                </ul>
+                <button id="themeToggle" class="btn btn-ghost btn-circle">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+                <button id="logoutBtn" class="btn btn-ghost">Logout</button>
+            </div>
+        </nav>
+
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold mb-8">Challenges</h1>
+            
+            <div class="tabs mb-8">
+                <a class="tab tab-lifted tab-active" id="dailyTab">Daily Challenges</a> 
+                <a class="tab tab-lifted" id="weeklyTab">Weekly Challenges</a>
+            </div>
+
+            <div id="challengesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                <!-- Challenges will be populated here -->
+            </div>
+
+            <div class="mt-12">
+                <h2 class="text-2xl font-semibold mb-4">Challenge History</h2>
+                <div class="overflow-x-auto">
+                    <table class="table w-full">
+                        <thead>
+                            <tr>
+                                <th>Challenge</th>
+                                <th>Type</th>
+                                <th>Completed On</th>
+                                <th>XP Earned</th>
+                            </tr>
+                        </thead>
+                        <tbody id="challengeHistoryBody">
+                            <!-- Challenge history will be populated here -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+            <div>
+                <p>Copyright © 2023 - All rights reserved by School Gaming Platform</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="notificationContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <!-- Modal for challenge details -->
+    <dialog id="challengeModal" class="modal">
+        <form method="dialog" class="modal-box">
+            <h3 class="font-bold text-lg" id="modalTitle"></h3>
+            <p id="modalDescription" class="py-4"></p>
+            <div id="modalReward" class="mb-4"></div>
+            <div class="modal-action">
+                <button class="btn" type="button" id="closeModal">Close</button>
+                <button class="btn btn-primary" type="button" id="startChallenge">Start Challenge</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/darkMode.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/challenges.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Profile - School Gaming Platform</title>
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@3.1.0/dist/full.css" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="../styles/custom.css">
+    <link rel="stylesheet" href="../styles/theme.css">
+</head>
+<body>
+    <div id="app" class="min-h-screen flex flex-col">
+        <nav class="navbar bg-base-100 shadow-lg">
+            <div class="flex-1">
+                <a href="../../index.html" class="btn btn-ghost normal-case text-xl">School Gaming Platform</a>
+            </div>
+            <div class="flex-none">
+                <ul class="menu menu-horizontal px-1">
+                    <li><a href="dashboard.html">Dashboard</a></li>
+                    <li><a href="guilds.html">Guilds</a></li>
+                    <li><a href="challenges.html">Challenges</a></li>
+                    <li><a href="ranking.html">Ranking</a></li>
+                    <li><a href="rewards.html">Rewards</a></li>
+                </ul>
+                <div class="dropdown dropdown-end">
+                    <label tabindex="0" class="btn btn-ghost btn-circle avatar">
+                        <div class="w-10 rounded-full">
+                            <img src="/placeholder.svg?height=40&width=40" alt="User avatar" id="userAvatar" />
+                        </div>
+                    </label>
+                    <ul tabindex="0" class="mt-3 p-2 shadow menu menu-compact dropdown-content bg-base-100 rounded-box w-52">
+                        <li><a href="profile.html" class="active">Profile</a></li>
+                        <li><a href="settings.html">Settings</a></li>
+                        <li><a id="logoutBtn">Logout</a></li>
+                    </ul>
+                </div>
+                <button id="themeToggle" class="btn btn-ghost btn-circle ml-2">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"></path>
+                    </svg>
+                </button>
+            </div>
+        </nav>
+
+        <main class="flex-grow container mx-auto px-4 py-8">
+            <h1 class="text-3xl font-bold mb-8">User Profile</h1>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="md:col-span-1">
+                    <div class="card bg-base-100 shadow-xl">
+                        <figure class="px-10 pt-10">
+                            <img src="/placeholder.svg?height=128&width=128" alt="User avatar" class="rounded-xl" id="profileAvatar" />
+                        </figure>
+                        <div class="card-body items-center text-center">
+                            <h2 class="card-title" id="userName">User Name</h2>
+                            <p id="userTitle">User Title</p>
+                            <div class="card-actions">
+                                <button class="btn btn-primary" id="editProfileBtn">Edit Profile</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:col-span-2">
+                    <div class="card bg-base-100 shadow-xl mb-8">
+                        <div class="card-body">
+                            <h2 class="card-title">User Stats</h2>
+                            <div class="stats stats-vertical lg:stats-horizontal shadow">
+                                <div class="stat">
+                                    <div class="stat-title">Total XP</div>
+                                    <div class="stat-value" id="totalXP">0</div>
+                                    <div class="stat-desc">21% more than last month</div>
+                                </div>
+                                
+                                <div class="stat">
+                                    <div class="stat-title">Current Level</div>
+                                    <div class="stat-value" id="currentLevel">0</div>
+                                    <div class="stat-desc">2 levels up since last week</div>
+                                </div>
+                                
+                                <div class="stat">
+                                    <div class="stat-title">Challenges Completed</div>
+                                    <div class="stat-value" id="challengesCompleted">0</div>
+                                    <div class="stat-desc">5 more than last week</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="card bg-base-100 shadow-xl">
+                        <div class="card-body">
+                            <h2 class="card-title">Recent Achievements</h2>
+                            <div id="recentAchievements" class="grid grid-cols-2 md:grid-cols-3 gap-4">
+                                <!-- Recent achievements will be populated here -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer footer-center p-4 bg-base-300 text-base-content">
+            <div>
+                <p>Copyright © 2023 - All rights reserved by School Gaming Platform</p>
+            </div>
+        </footer>
+    </div>
+
+    <div id="notificationContainer" class="fixed top-4 right-4 z-50"></div>
+
+    <!-- Modal for editing profile -->
+    <dialog id="editProfileModal" class="modal">
+        <form method="dialog" class="modal-box">
+            <h3 class="font-bold text-lg">Edit Profile</h3>
+            <div class="form-control">
+                <label class="label" for="editUserName">
+                    <span class="label-text">User Name</span>
+                </label>
+                <input type="text" id="editUserName" placeholder="Enter your name" class="input input-bordered" />
+            </div>
+            <div class="form-control mt-4">
+                <label class="label" for="editUserTitle">
+                    <span class="label-text">User Title</span>
+                </label>
+                <input type="text" id="editUserTitle" placeholder="Enter your title" class="input input-bordered" />
+            </div>
+            <div class="modal-action">
+                <button class="btn" type="button" id="closeEditProfileModal">Close</button>
+                <button class="btn btn-primary" type="button" id="saveProfile">Save Changes</button>
+            </div>
+        </form>
+    </dialog>
+
+    <script src="../js/auth.js"></script>
+    <script src="../js/darkMode.js"></script>
+    <script src="../js/notifications.js"></script>
+    <script src="../js/profile.js"></script>
+</body>
+</html>
+
